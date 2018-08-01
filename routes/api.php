@@ -83,6 +83,13 @@ Route::prefix('v1')->group(function () {
         //->where('status', 1);
     });
 
+    Route::get('booking/validation/item/{item_id}', function($item_id){
+        $item = Item::find($item_id)->caution;
+        return($item);
+    });
+
+    Route::post('booking/validation/items', 'bookingController@calculCaution');
+
 
 	Route::get('assousers/users/{user}', function ($user_id) {
 

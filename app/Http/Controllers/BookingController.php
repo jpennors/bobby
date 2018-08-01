@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Booking;
 use App\User;
 use App\Association;
+use App\Item;
 use App\Http\Requests\BookingRequest;
 
 class BookingController extends Controller
@@ -93,5 +94,13 @@ class BookingController extends Controller
         }
         else
             return response()->json(["message" => "Impossible de trouver la réservation"], 500);
+    }
+
+    public function calculCaution(Request $request){
+        $caution = 0;
+        foreach ($request->items as $item) {
+            $caution+=Item::find($item['id'])->caution*$item['quantity'];
+        }
+        return($caution);
     }
 }

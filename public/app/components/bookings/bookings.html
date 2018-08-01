@@ -159,9 +159,9 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <p ng-hide="booking.items.length > 0"><i>Vous n'avez encore rien choisi pour la commande.</i></p>
+                                <p ng-hide="bookingline.items.length > 0"><i>Vous n'avez encore rien choisi pour la commande.</i></p>
 
-                                <div ng-show="booking.items.length > 0">
+                                <div ng-show="bookingline.items.length > 0">
 
                                 <!--Items-->
                                     <h4>Items</h4>
@@ -174,7 +174,7 @@
                                                 <th>A</th>
                                             </tr>
                                         </thead>
-                                        <tbody ng-repeat="item in booking.items">
+                                        <tbody ng-repeat="item in bookingline.items">
                                             <tr>
                                                 <td>{{ item.name }}</td>
                                                 <td>
@@ -184,7 +184,7 @@
                                                 </td>
                                                 <td>
                                                     <div ng-show="!item.editStartDate">
-                                                        {{ item.startDate | date : "dd/MM/yyyy" }}
+                                                        {{ item.startDateAngular | date : "dd/MM/yyyy" }}
                                                         <a><img src="assets/img/edit.png" height="14px" ng-click=editStartDate(item)></a>
                                                     </div>
                                                     <div ng-show="item.editStartDate">
@@ -193,7 +193,7 @@
                                                 </td>
                                                 <td>
                                                     <div ng-show="!item.editEndDate">
-                                                        {{ item.endDate | date : "dd/MM/yyyy" }}
+                                                        {{ item.endDateAngular | date : "dd/MM/yyyy" }}
                                                         <a><img src="assets/img/edit.png" height="14px" ng-click=editEndDate(item)></a>
                                                     </div>
                                                     <div ng-show="item.editEndDate">

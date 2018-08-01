@@ -18,7 +18,7 @@ class CreateBookingsTable extends Migration
             $table->integer('owner')->unsigned();
             $table->integer('booker')->unsigned();
             $table->integer('user')->unsigned();
-            $table->string('status');
+            $table->integer('status');
             $table->boolean('cautionReceived');
             $table->integer('caution')->unsigned();
 

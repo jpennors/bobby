@@ -27,7 +27,7 @@ class BookingRequest extends FormRequest
             'owner' =>  'integer'.($this->isMethod('put')?'':'|required');
             'booker'    =>  'integer'.($this->isMethod('put')?'':'|required');
             'user'  =>  'integer'.($this->isMethod('put')?'':'|required');
-            'status'    =>  'string'.($this->isMethod('put')?'':'|required');
+            'status'    =>  'integer'.($this->isMethod('put')?'':'|required');
             'cautionReceived'   => .($this->isMethod('put')?'':'|required');
             'caution'   =>  'integer'.($this->isMethod('put')?'':'|required');
         ];
