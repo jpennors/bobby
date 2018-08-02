@@ -26,8 +26,4 @@ class Item extends Model
 		return $this->belongsTo('App\ItemPlace', 'place');
 	}
 
-	public function bookinglines()
-	{
-		return $this->hasMany('App\BookingLine', 'item');
-	}
 }

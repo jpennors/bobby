@@ -17,8 +17,8 @@ class BookingLine extends Model
 		$this->belongsTo('App\BookingLine');
 	}
 
-	public function items()
+	public function item()
 	{
-		$this->belongsTo('App\Item');
+		$this->belongsTo('App\Item', 'item');
 	}
 }

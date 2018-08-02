@@ -20,7 +20,7 @@ class CreateBookingLinesTable extends Migration
             $table->integer('quantity')->unsigned();
             $table->timestamp('startDate');
             $table->timestamp('endDate');
-            $table->string('status');
+            $table->integer('status');
 
             $table->foreign('item')->references('id')->on('items');
             $table->foreign('booking')->references('id')->on('bookings');

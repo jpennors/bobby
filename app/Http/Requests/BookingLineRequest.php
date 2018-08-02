@@ -24,11 +24,12 @@ class BookingLineRequest extends FormRequest
     public function rules()
     {
         return [
-            'booking'  =>  'integer|between:3,191'.($this->isMethod('put')?'':'|required'),
-            'item'  =>  'integer|integer|unsigned',
-            'quantity'  =>  'integer|between:3,191'.($this->isMethod('put')?'':'|required'),
-            'date'  =>  'timestamp'.($this->isMethod('put')?'':'|required'),
-            'status'    =>  'string|between:3,191'.($this->isMethod('put')?'':'|required'),
+            'booking'  =>  'integer'.($this->isMethod('put')?'':'|required'),
+            'item'  =>  'integer|exists:Items,id',
+            'quantity'  =>  'integer'.($this->isMethod('put')?'':'|required'),
+            'startDate'  =>  'date'.($this->isMethod('put')?'':'|required'),
+            'endDate'  =>  'date'.($this->isMethod('put')?'':'|required'),
+            'status'    =>  'integer'.($this->isMethod('put')?'':'|required'),
         ];
     }
 }

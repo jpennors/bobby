@@ -19,7 +19,7 @@ class BookingLinesTableSeeder extends Seeder
         		'quantity'	=>	1,
                 'startDate' => '2018-04-14',
                 'endDate' => '2018-04-14',
-                'status' =>  'In',
+                'status' =>  1,
 	        ],
 	        [
         		'booking' => 1,
@@ -27,7 +27,7 @@ class BookingLinesTableSeeder extends Seeder
         		'quantity'	=>	1,
                 'startDate' => '2018-04-14',
                 'endDate' => '2018-04-14',
-                'status' =>  'In',
+                'status' =>  1,
 	        ],
 	        [
         		'booking' => 3,
@@ -35,7 +35,7 @@ class BookingLinesTableSeeder extends Seeder
         		'quantity'	=>	10,
                 'startDate' => '2018-04-14',
                 'endDate' => '2018-04-14',
-                'status' =>  'Out',
+                'status' =>  1,
 	        ],
         ];
 

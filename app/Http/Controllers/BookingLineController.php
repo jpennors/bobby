@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\AssociationRequest;
+use App\Http\Requests\BookingLineRequest;
 use App\Http\Controllers\Controller;
 use App\BookingLine;
+use App\Booking;
+use App\Item;
 
 class BookingLineController extends Controller
 {
@@ -17,7 +19,7 @@ class BookingLineController extends Controller
 
     public function index()
     {
-        $bookinglines = BookingLine::get();
+        $bookinglines = BookingLine::all();
         return response()->json($bookinglines, 200);
     }
 
@@ -28,9 +30,11 @@ class BookingLineController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(BookingLineRequest $request)
     {
-        $bookingline = BookingLine::create($request->all());
+        $b = Booking::findOrFail($request->booking);
+
+        $bookingline = $b->bookinglines()->create($request->all());
         if($bookingline)
         {
             return response()->json($bookingline, 200);
@@ -51,6 +55,9 @@ class BookingLineController extends Controller
     public function show($id)
     {
         $bookingline = BookingLine::find($id);
+        //$bookingline->item = $bookingline->items()->get();
+        
+        $bookingline->item = Item::find($bookingline->item);
         if($bookingline)
             return response()->json($bookingline, 200);
         else

@@ -152,12 +152,12 @@ angular.module('bobbyApp')
           var bookingId = data.data.id;
           //Enregistrement des items un à un
          for(var i = $scope.bookingline.items.length - 1; i >= 0; i--) {
+
             $scope.bookingline.items[i].startDate = $filter('date')($scope.bookingline.items[i].startDateAngular, "yyyy-MM-dd HH:mm:ss");
             $scope.bookingline.items[i].endDate = $filter('date')($scope.bookingline.items[i].endDateAngular, "yyyy-MM-dd HH:mm:ss");
             $scope.bookingline.items[i].item = $scope.bookingline.items[i].id;
             $scope.bookingline.items[i].booking = bookingId;
             $scope.bookingline.items[i].status = 1;
-            console.log($scope.bookingline.items[i]);
             serviceAjax.post('bookinglines', $scope.bookingline.items[i], 'POST');
           }
         });
