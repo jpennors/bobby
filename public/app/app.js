@@ -47,6 +47,16 @@ var app  = angular
         controller: 'categorieCtrl',
         controllerAs: 'categorie'
       })
+      .when('/booking',{
+        templateUrl : 'app/components/bookings/createBooking.html',
+        controller : 'createBookingCtrl',
+        controllerAs : 'createBooking'
+      })
+      .when('/mybookings',{
+        templateUrl : 'app/components/bookings/indexMyBookings.html',
+        controller : 'indexMyBookingsCtrl',
+        controllerAs : 'createBooking'
+      })
       .when('/gestion/categories', {
         templateUrl : 'app/components/categories/administrator/categories_management.html',
         controller : 'categoriesManagementCtrl',
@@ -57,11 +67,11 @@ var app  = angular
         controller : 'placesManagementCtrl',
         controllerAs : 'placesManagement'
       })
-      .when('/booking',{
-        templateUrl : 'app/components/bookings/bookings.html',
-        controller : 'bookingsCtrl',
-        controllerAs : 'bookings'
-      })
+      .when('/gestion/bookings',{
+        templateUrl : 'app/components/bookings/administrator/indexBookings.html',
+        controller : 'indexBookingsCtrl',
+        controllerAs : 'indexBookings'
+      })      
       /*.when('/items/:asso_id', {
         templateUrl: 'views/items.html',
         controller: 'ItemsCtrl',

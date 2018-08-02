@@ -1,0 +1,126 @@
+<in-wrapper>
+	<br><br>
+
+	<div class="container">
+	  	<h3 align="center">Réservations demandées par des associations</h3>
+
+		<table align="center" class="table">
+
+	    	<th align="center" nav-pills>
+
+
+	            <ul class="nav flex-column">
+	            	<br>
+	                <br>
+
+	            	<button class="btn bg-success text-white" ng-click="changeStatus(1)">
+	            		En cours
+	            	</button>
+	             	<br>
+	             	<button class="btn bg-warning text-white" ng-click="changeStatus(2)">
+	            		Validée
+	            	</button>
+	             	<br>
+	             	<button class="btn bg-danger text-white" ng-click="changeStatus(3)">
+	            		Archives
+	            	</button>
+		        </ul>
+	    	</th>
+
+	    	<th>
+
+
+                <table class="table">
+	              	<thead class="thead-dark">
+	                	<tr>
+							<th scope="col">Par qui?</th>
+							<th scope="col">Caution</th>
+							<th scope="col">Caution versée?</th>
+							<th scope="col">Effectuée le</th>
+							<th scope="col"></th>
+	                	</tr>
+	              	</thead>
+	              	<tbody>
+
+						<tr ng-repeat="booking in bookings.ownerBookings | toArray:false | orderBy:propertyName:reverse" ng-click="open(booking.id)" ng-if="booking.status==status">
+							<td>
+								<span>{{ booking.booker.name }}</span>
+							</td>
+							<td>
+								<span>{{ booking.caution }}</span>
+							</td>
+							<td>
+								<span>{{ booking.cautionReceived }}</span>
+							</td>
+							<td>
+								<span>{{ booking.created_at.toString().replace(' ', 'T') | date :  "dd/MM/yyyy" }}</span>
+							</td>
+							<td style="text-align: center">
+								<button type="button" class="btn btn-outline-info">Voir</button>
+							</td>
+						</tr>
+	            	</tbody>
+	            </table>
+      		</th>
+    	</table>
+	</div>
+	<div class="container">
+	  	<h3 align="center">Réservations effectuées par votre association</h3>
+
+		<table align="center" class="table" >
+
+	    	<th align="center" nav-pills>
+
+
+	            <ul class="nav flex-column">
+	            	<br>
+	                <br>
+
+	            	<button class="btn bg-success text-white" ng-click="changeStatus(1)">
+	            		En cours
+	            	</button>
+	             	<br>
+	             	<button class="btn bg-warning text-white" ng-click="changeStatus(2)">
+	            		Validée
+	            	</button>
+	             	<br>
+	             	<button class="btn bg-danger text-white" ng-click="changeStatus(3)">
+	            		Archives
+	            	</button>
+		        </ul>
+	    	</th>
+
+	    	<th>
+
+
+                <table class="table">
+	              	<thead class="thead-dark">
+	                	<tr>
+							<th scope="col">Par qui?</th>
+							<th scope="col">Caution versée?</th>
+							<th scope="col">Effectuée le</th>
+							<th scope="col"></th>
+	                	</tr>
+	              	</thead>
+	              	<tbody>
+
+						<tr ng-repeat="booking in bookings.bookerBookings | toArray:false | filter:bookingSearch | orderBy:propertyName:reverse" ng-click="open(booking.id)">
+							<td>
+								<span>{{ booking.booker.name }}</span>
+							</td>
+							<td>
+								<span>{{ booking.cautionReceived }}</span>
+							</td>
+							<td>
+								<span>{{ booking.created_at.toString().replace(' ', 'T') | date :  "dd/MM/yyyy" }}</span>
+							</td>
+							<td style="text-align: center">
+								<button type="button" class="btn btn-outline-info">Voir</button>
+							</td>
+						</tr>
+	            	</tbody>
+	            </table>
+      		</th>
+    	</table>
+	</div>
+</in-wrapper>

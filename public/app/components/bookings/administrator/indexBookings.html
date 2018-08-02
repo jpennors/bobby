@@ -1,0 +1,73 @@
+<in-wrapper>
+  <br><br>
+  <div class = "row">
+    <div class="col-md-8 offset-md-2">
+      <table class="table table-hover table-striped col-md-12">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-5">
+                <h3>Gestion des réservations</h3>
+            </div>
+            <div class="form-group col-md-4 offset-md-1">
+              <input ng-model="bookingSearch" type="text" class="form-control search-list" placeholder="Rechercher une réservation...">
+            </div>
+          </div>
+        </div>
+        <thead class="thead-dark">
+          <tr>
+              <th ng-click="sortBy('booker')">
+                Emprunteur  
+                <span class="sortorder" ng-show="propertyName=='booker'" ng-class="{reverse: reverse}"></span>
+              </th>
+              <th ng-click="sortBy('owner')">
+                Propriétaire  
+                <span class="sortorder" ng-show="propertyName=='owner'" ng-class="{reverse: reverse}"></span>
+              </th>
+              <th ng-click="sortBy('caution')">
+                Caution  
+                <span class="sortorder" ng-show="propertyName=='caution'" ng-class="{reverse: reverse}"></span>
+              </th>
+              <th ng-click="sortBy('cautionReceived')">
+                Caution reçue?  
+                <span class="sortorder" ng-show="propertyName=='cautionReceived'" ng-class="{reverse: reverse}"></span>
+              </th>
+              <th ng-click="sortBy('status')">
+                Statut  
+                <span class="sortorder" ng-show="propertyName=='status'" ng-class="{reverse: reverse}"></span>
+              </th>
+              <th ng-click="sortBy('created')">
+                Effectuée le  
+                <span class="sortorder" ng-show="propertyName=='created'" ng-class="{reverse: reverse}"></span>
+              </th>
+              <th>Consulter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="booking in bookings | toArray:false | filter:bookingSearch | orderBy:propertyName:reverse" ng-click="open(booking.id)">
+            <td>
+              <span>{{ booking.booker.name }}</span>
+            </td>
+            <td>
+              <span>{{ booking.owner.name }}</span>
+            </td>
+            <td>
+              <span>{{ booking.caution }}</span>
+            </td>
+            <td>
+              <span>{{ booking.cautionReceived }}</span>
+            </td>
+            <td>
+              <span>{{ booking.status }}</span>
+            </td>
+            <td>
+              <span>{{ booking.created_at.toString().replace(' ', 'T') | date :  "dd/MM/yyyy" }}</span>
+            </td>
+            <td style="text-align: center">
+              <img src="assets/img/loading-mark.png" width="20px">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</in-wrapper>

@@ -96,27 +96,8 @@ Route::prefix('v1')->group(function () {
     	return $assos = User::find($user_id)->associations();
     });
 
-    Route::get('items/itemtypes/{type}', function($type_id){
+    Route::get('bookings/asso/{asso_id}', 'bookingController@indexAssociation');
 
-    	$name = ItemType::find($type_id)->items()->pluck('name');
-    	$description = ItemType::find($type_id)->items()->pluck('description');
-    	$quantity = ItemType::find($type_id)->items()->pluck('quantity');
-    	$place = ItemType::find($type_id)->items()->pluck('place');
-    	$status = ItemType::find($type_id)->items()->pluck('status');
-    	$caution = ItemType::find($type_id)->items()->pluck('caution');
-    	$association = ItemType::find($type_id)->items()->association()->pluck('name');
-
-    	$items = [];
-
-    	for ($i=0; $i< count($name); $i++)
-    	{
-			array_push($items, ['name' => $name[$i], 'description' => $description[$i], 'quantity' => $quantity[$i], 'place' => $place[$i], 'status' => $status[$i], 'caution' => $caution[$i], 'association' => $association[i]]);
-    	};
-
-
-    	return json_encode($items);
-
-    });
 
     Route::get('associations/booking/{owner}/{type}', function($association_id, $type_id) {
     	return Association::find($association_id)->bookings()->where('status', $type_id)->with('bookinglines')->get();

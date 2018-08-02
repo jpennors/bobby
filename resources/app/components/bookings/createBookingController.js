@@ -8,7 +8,7 @@
  * Controller of the bobbyApp
  */
 angular.module('bobbyApp')
-  .controller('bookingsCtrl', function ($scope, serviceAjax, $routeParams, $location, $http, focusMe, $timeout, $filter) {
+  .controller('createBookingCtrl', function ($scope, serviceAjax, $routeParams, $location, $http, focusMe, $timeout, $filter) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

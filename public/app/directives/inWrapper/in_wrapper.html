@@ -1,97 +1,91 @@
 <div id="wrapper" ng-controller="inWrapperCtrl">
-  <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+  <div class="header">
+    <nav   class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <nav   class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-
-        <!-- Début fonction image -->
-        <a class="navbar-brand" href="https://assos.utc.fr">
-          <img src="assets/img/bde.png" width="45" height="30" class="d-inline-block align-top" alt="">
+          <!-- Début fonction image -->
+          <a class="navbar-brand" href="https://assos.utc.fr">
+            <img src="assets/img/bde.png" width="45" height="30" class="d-inline-block align-top" alt="">
           </a>
-        <!-- fin fonction image -->
+          <!-- fin fonction image -->
 
-              <!-- Début fonction accueil -->
-                <li class="nav-item active">
-                       <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
-                </li>
-              <!-- fin fonction acceuil -->
+          <!-- Début fonction accueil -->
+          <li class="nav-item active">
+                 <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
+          </li>
+          <!-- fin fonction acceuil -->
 
-              <!-- boutons deroulants -->
+          <!-- boutons deroulants -->
 
-              <!-- bouton deroulant 1 -->
-                <div class="dropdown">
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Catégories
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div ng-repeat="type in types">
-                            <a class="dropdown-item" href="#!/categories/{{type.id}}">{{type.name}}</a>
-                        </div>
-                      </div>
-                  </li>
+          <!-- bouton deroulant 1 -->
+          <div class="dropdown">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Catégories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div ng-repeat="type in types">
+                      <a class="dropdown-item" href="#!/categories/{{type.id}}">{{type.name}}</a>
+                  </div>
                 </div>
+            </li>
+          </div>
 
-              <!-- bouton deroulant 2 -->
-              <div class="dropdown">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Mon matériel
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div ng-repeat="asso in assos">
-                            <a class="dropdown-item" href="#!/items/{{asso.id}}">{{asso.name}}</a>
-                        </div>
-                      </div>
-                  </li>
-                </div>
-
-              <!-- bouton deroulant 3 -->
-                <div class="dropdown">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Mes reservations
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#!/booking">Réserver</a>
-                        <a class="dropdown-item" href="#!/gestion/places">Mes réservations</a>
-                    </div>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    </div>
-                  </li>
-                </div>
-
-              <!-- bouton deroulant 4 -->
-              <div class="dropdown">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Gestion administrative
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#!/gestion/categories">Catégories</a>
-                        <a class="dropdown-item" href="#!/gestion/places">Localisations</a>
-                        <a class="dropdown-item" href="#">Matériels</a>
-                    </div>
-                  </li>
+          <!-- bouton deroulant 2 -->
+          <div class="dropdown">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Mon matériel
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div ng-repeat="asso in assos">
+                    <a class="dropdown-item" href="#!/items/{{asso.id}}">{{asso.name}}</a>
+                  </div>
               </div>
+            </li>
+          </div>
 
-              <!-- fin boutons déroulants -->
-            </div>
-          </ul>
+          <!-- bouton deroulant 3 -->
+          <div class="dropdown">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Mes reservations
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#!/booking">Réserver</a>
+                  <a class="dropdown-item" href="#!/mybookings">Mes réservations</a>
+              </div>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              </div>
+            </li>
+          </div>
+
+          <!-- bouton deroulant 4 -->
+          <div class="dropdown">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Gestion administrative
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#!/gestion/categories">Catégories</a>
+                <a class="dropdown-item" href="#!/gestion/places">Localisations</a>
+                <a class="dropdown-item" href="#">Matériels</a>
+                <a class="dropdown-item" href="#!/gestion/bookings">Réservations</a>
+              </div>
+            </li>
+          </div>
+        <!-- fin boutons déroulants -->
+        </ul>
 
         <!-- Début fonction recherche-->
 
-          <form clas="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+        <form clas="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
         <!-- Fin fonction recherche -->
+      </div>
     </nav>
   </div>
   

@@ -31,9 +31,29 @@ class BookingController extends Controller
 
                 /*Requêtes pour les utilisateurs à changer avec Portail des assos*/
                 $booking->user = User::find($booking->user);
+
+                /*Gestion des réceptions de caution*/
+                if($booking->cautionReceived)
+                    $booking->cautionReceived = "Oui";
+                else
+                    $booking->cautionReceived = "Non";
+
+                /*Gestion des status*/
+                switch ($booking->status) {
+                    case '1':
+                        $booking->status = "En cours";
+                        break;
+                    
+                    default:
+                        $booking->status = "";
+                        break;
+                }
             }
 
             return response()->json($bookings, 200);
+        }
+        else{
+            return response()->json(["message" => "Impossible de trouver les réservations"], 500);
         }
     }
 
@@ -80,6 +100,23 @@ class BookingController extends Controller
 
             /*Requêtes pour les utilisateurs à changer avec Portail des assos*/
             $booking->user = User::find($booking->user);
+
+            /*Gestion des réceptions de caution*/
+                if($booking->cautionReceived)
+                    $booking->cautionReceived = "Oui";
+                else
+                    $booking->cautionReceived = "Non";
+
+                /*Gestion des status*/
+                switch ($booking->status) {
+                    case '1':
+                        $booking->status = "En cours";
+                        break;
+                    
+                    default:
+                        $booking->status = "";
+                        break;
+                }
 
             return response()->json($booking, 200);
         }
@@ -131,5 +168,46 @@ class BookingController extends Controller
             $caution+=Item::find($item['id'])->caution*$item['quantity'];
         }
         return($caution);
+    }
+
+    public function indexAssociation($asso_id){
+        //$bookings['owner'] = Booking::all()->where('owner', $asso_id);
+        $bookings = [
+            "ownerBookings"     =>  Booking::all()->where('owner', $asso_id),
+            "bookerBookings"    =>  Booking::all()->where('booker', $asso_id),
+        ];
+        if($bookings['ownerBookings']){
+            foreach ($bookings['ownerBookings'] as $booking) {
+
+                $booking->booker = Association::find($booking->booker);
+                
+                $booking->user = User::find($booking->user);
+
+                /*Gestion des réceptions de caution*/
+                if($booking->cautionReceived)
+                    $booking->cautionReceived = "Oui";
+                else
+                    $booking->cautionReceived = "Non";
+            }
+                }
+        if($bookings['bookerBookings']){
+            foreach ($bookings['bookerBookings'] as $booking) {
+
+                $booking->booker = Association::find($booking->owner);
+
+                /*Requêtes pour les utilisateurs à changer avec Portail des assos*/
+                $booking->user = User::find($booking->user);
+
+                /*Gestion des réceptions de caution*/
+                if($booking->cautionReceived)
+                    $booking->cautionReceived = "Oui";
+                else
+                    $booking->cautionReceived = "Non";
+            }
+        
+
+            return response()->json($bookings, 200);
+        }
+        
     }
 }
