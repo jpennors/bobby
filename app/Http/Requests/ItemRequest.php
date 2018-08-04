@@ -24,13 +24,13 @@ class ItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>  'string'.($this->isMethod('put')?'':'|required'),
-            'quantity'  =>  'integer'.($this->isMethod('put')?'':'|required'),
-            'place'   => 'integer'.($this->isMethod('put')?'':'|required'),
-            'status'   =>  'integer'.($this->isMethod('put')?'':'|required'),
-            'caution'   =>  'integer'.($this->isMethod('put')?'':'|required'),
-            'type'   =>  'integer'.($this->isMethod('put')?'':'|required'),
-            'association'   =>  'integer'.($this->isMethod('put')?'':'|required'),
+            'name'          =>  'unique:items,name->ignore('.$this->id.')|string|between:2,191'.($this->isMethod('put')?'':'|required'),
+            'quantity'      =>  'integer|min:0|'.($this->isMethod('put')?'':'|required'),
+            'place'         => 'exists:itemplaces,id|integer|min:0'.($this->isMethod('put')?'':'|required'),
+            'status'        =>  'integer|min:1|max:3'.($this->isMethod('put')?'':'|required'),
+            'caution'       =>  'integer|min:0'.($this->isMethod('put')?'':'|required'),
+            'type'          =>  'exists:itemtypes,id|integer|min:0'.($this->isMethod('put')?'':'|required'),
+            'association'   =>  'integer|min:0'.($this->isMethod('put')?'':'|required'),
         ];
     }
 

@@ -24,8 +24,7 @@ class ItemTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>  'string|between:3,191'.($this->isMethod('put')?'':'|required'),
-            'picture'   => 'string',
+            'name' =>  'unique:itemtypes,name->ignore('.$this->id.')|string|between:2,191'.($this->isMethod('put')?'':'|required'),
         ];
     }
 }

@@ -24,7 +24,7 @@ class ItemPlaceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>  'string|between:3,191'.($this->isMethod('put')?'':'|required'),
+            'name' =>  'unique:itemplaces,name->ignore('.$this->id.')|string|between:2,191'.($this->isMethod('put')?'':'|required'),
         ];
     }
 }

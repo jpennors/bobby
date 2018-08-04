@@ -2,7 +2,7 @@
   <br><br>
   <div class = "row">
     <div class="col-md-6 offset-md-3">
-      <table class="table table-hover table-striped col-md-12">
+      <table class="table table-hover col-md-12">
         <div class="panel-heading">
           <div class="row">
             <div class="col-md-5">
@@ -12,22 +12,30 @@
               <input ng-model="categorieSearch" type="text" class="form-control search-list" placeholder="Rechercher une catégorie...">
             </div>
             <div class="col-md-1 offset-md-1">
-              <a >
-                <img src="assets/img/add.png" width="30px" ng-click="add()">
-              </a>
+              <h3 class="purple-text">
+                <a ng-click="add()">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </h3>
             </div>
           </div>
         </div>
         <div class="row" ng-if="addConfirmation && !updateConfirmation && !deleteConfirmation">
-          <span class="btn spanConfirm addConfirm">La catégorie a bien été ajoutée</span>
+          <div class="col-md-6 offset-md-3 alert alert-success" role="alert">
+            La catégorie a bien été ajoutée.
+          </div>
         </div>
         <div class="row" ng-if="updateConfirmation && !addConfirmation && !deleteConfirmation">
-          <span class="btn spanConfirm updateConfirm">La catégorie a bien été mise à jour</span>
+          <div class="col-md-6 offset-md-3 alert alert-info" role="alert">
+            La catégorie a bien été mise à jour.
+          </div>
         </div>
         <div class="row" ng-if="deleteConfirmation && !addConfirmation && !updateConfirmation">
-          <span class="btn spanConfirm deleteConfirm">La catégorie a bien été supprimée</span>
+          <div class="col-md-6 offset-md-3 alert alert-danger" role="alert">
+            La catégorie a bien été supprimée.
+          </div>
         </div>
-        <thead class="thead-dark">
+        <thead>
           <tr>
               <th ng-click="sort()">
                 Nom  
@@ -40,9 +48,14 @@
           <tr ng-show="addNewCategorie">
             <td><input type="text" ng-model="newCategorie.name" class="form-control" focus-me="focusInput"></td>
             <td>
-              <img src="assets/img/validate.png" height="22px" style="margin: 6px" ng-click="save()">
-              <br>
-              <img src="assets/img/cancel.png" height="22px" style="margin: 6px" ng-click="cancel()">
+              <p class="purple-text">
+                <a ng-click="save()">
+                  <i class="fas fa-check i-right" aria-hidden="true"></i>
+                </a>
+                <a ng-click="cancel()">
+                  <i  class="fas fa-times i-left" aria-hidden="true"></i>
+                </a>
+              </p>
             </td>
           </tr>
           <tr ng-repeat="categorie in categories | toArray:false | filter:categorieSearch | orderBy:propertyName:reverse">
@@ -51,11 +64,22 @@
               <input type="text" ng-model="categorie.name" ng-show="categorie.edit" class="form-control">
             </td>
             <td>
-              <img ng-show="!categorie.edit" src="assets/img/edit.png" height="22px" style="margin : 6px" ng-click="edit(categorie)">
-              <img ng-show="!categorie.edit" src="assets/img/delete.png" height="22px" ng-click="delete(categorie)" style="margin:6px">
-              <img ng-show="categorie.edit" src="assets/img/validate.png" height="22px" style="margin: 6px" ng-click="update(categorie)">
-              <br>
-              <img ng-show="categorie.edit" src="assets/img/cancel.png" height="22px" style="margin: 6px" ng-click="cancel()">
+              <p ng-show="!categorie.edit" class="purple-text">
+                <a ng-click="edit(categorie)">
+                  <i class="fa fa-edit i-right" aria-hidden="true"></i>
+                </a>
+                <a ng-click="delete(categorie)">
+                  <i class="fas fa-trash-alt i-left" aria-hidden="true"></i>
+                </a>
+              </p>
+              <p ng-show="categorie.edit" class="purple-text">
+                <a ng-click="update(categorie)">
+                  <i class="fas fa-check i-right" aria-hidden="true"></i>
+                </a>
+                <a ng-click="cancel()">
+                  <i class="fas fa-times i-left" aria-hidden="true"></i>
+                </a>
+              </p>
             </td>
           </tr>
         </tbody>

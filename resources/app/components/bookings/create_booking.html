@@ -1,0 +1,227 @@
+<in-wrapper>
+    <br><br>
+    
+    <!-- TITRE -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="title">Demande de réservation</h2>
+        </div>
+    </div>
+    <hr>
+
+    <!-- CONTENU -->
+    <div class="row">
+        <div class="col-sm-12 col-md-5 offset-md-1" ng-hide="booking.assoRequesting">
+            <div class="card card-no-border">
+                <div class="card-header card-purple">
+                    <h4>Étape 1</h4>
+                    <i>Pour quelle association veux-tu emprunter du matériel?</i>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                            <input  ng-model="assoSearch" type="text" class="form-control" placeholder="Rechercher une association">
+                    </div>
+                    <div class="list-group">
+                        <a ng-repeat="asso in assos | filter:assoSearch" ng-click="assoRequesting(asso.id)" class="list-group-item list-group-item-action">
+                            {{ asso.name }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-5 offset-md-1" ng-show="booking.assoRequesting && !booking.assoRequested">
+            <div class="card card-no-border">
+                <div class="card-header card-purple">
+                    <h4>Étape 2</h4>
+                    <i>A quelle association veux-tu emprunter du matériel?</i>
+                </div>
+                <div class="card-body">
+                    <!-- DONNEES A TRANSFORMER EN ARRAY -->
+                    <!--<div class="form-group">
+                            <input  ng-model="assoSearch" type="text" class="form-control" placeholder="Rechercher une association">
+                    </div>-->
+                    <div class="list-group">
+                        <a ng-repeat="assoRequested in assosRequested" ng-click="associationRequested(assoRequested.id)" class="list-group-item list-group-item-action">
+                            {{ assoRequested.name }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-5 offset-md-1" ng-show="booking.assoRequesting && booking.assoRequested && !booking.date">
+            <div class="card card-no-border">
+                <div class="card-header card-purple">
+                    <h4>Étape 3</h4>
+                    <i>A quelle date? (Tu pourras les ajuster pour chaque item ensuite)</i>
+                </div>
+                <div class="card-body">
+                    <br>
+                    <div class="row">
+                        <label class="form-label col-md-4">Date d'emprunt</label>
+                        <input class="form-control col-md-4" type="date" ng-model="booking.startDate">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="form-label col-md-4">Date de retour</label>
+                        <input class="form-control col-md-4" type="date" ng-model="booking.endDate">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <button class="btn btn-grey col-md-2 offset-md-5" ng-click="dateSave()">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-5 offset-md-1" ng-show="booking.assoRequesting && booking.assoRequested && booking.date">
+            <div class="card card-no-border">
+                <div class="card-header card-purple">
+                    <h4>Étape 4</h4>
+                    <i>Que veux-tu emprunter?</i>
+                </div>
+                <div class="card-body">
+                    <!-- Item -->
+                    <div class="form-group">
+                        <input ng-show="items" ng-model="itemSearch" type="text" class="form-control" placeholder="Rechercher un item">
+                    </div>
+                    <div class="list-group">
+                        <a ng-repeat="item in items | filter:itemSearch" ng-click="item.quantity>0 && addItem(item)" class="list-group-item list-group-item-action title">
+                                <p class="title">
+                                    {{ item.name }}
+                                    <br>
+                                    <span class="badge badge-pill badge-secondary">{{ item.quantity}}</span>
+                                </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        <!-- RESUME DE LA RESERVATION -->
+        <div class="col-sm-12 col-md-5">
+            <div class="card card-no-border">
+                <div class="card-header card-purple">
+                    <h4 class="title">Résumé de la réservation</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- USER -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="title">Josselin Pennors</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <!-- ASSO REQUESTING -->
+                                    <div class="col-md-6 card">
+                                        <div ng-hide="booking.assoRequesting">
+                                            <i>Vous n'avez pas choisi pour quelle association vous voulez emprunter du matériel.</i>
+                                        </div>
+                                        <div ng-show="booking.assoRequesting">
+                                            <h4 class="title">Emprunteur</h4>
+                                            <br>
+                                            <h6>{{ booking.assoRequesting.name }}</h6>
+                                            <p>{{ booking.assoRequesting.mail }}</p>
+                                            <button type="button" class="btn btn-grey col-md-4 offset-md-4" ng-click="changeAssoRequesting()">Modifier</button>
+                                        </div>
+                                    </div>
+                                    <!-- ASSO REQUESTED -->
+                                    <div class="col-md-6 card">
+                                        <div ng-hide="booking.assoRequested">
+                                            <i>Vous n'avez pas choisi l'association à qui vous demandez du matériel.</i>
+                                        </div>
+                                        <div ng-show="booking.assoRequested">
+                                            <h4 class="title">Propriétaire</h4>
+                                            <br>
+                                            <h6>{{ booking.assoRequested.name }}</h6>
+                                            <p>{{ booking.assoRequested.mail }}</p>
+                                            <button type="button" class="btn btn-grey col-md-4 offset-md-4" ng-click="changeAssoRequested()">Modifier</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    <hr>
+
+                    <!-- ITEMS -->
+                    
+                    <div ng-hide="bookingline.items.length > 0">
+                        <i>Vous n'avez encore rien choisi pour la commande.</i>
+                    </div>
+                    <div class="card" ng-show="bookingline.items.length > 0">
+                        <div class="card-header">
+                            <h5 class="title">Items</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Quantité</th>
+                                        <th>De</th>
+                                        <th>A</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="item in bookingline.items">
+                                    <tr>
+                                        <td>{{ item.name }}</td>
+                                        <td>
+                                            {{ item.quantity }}
+                                            <a ng-click="addItemByIndex($index)">
+                                                <!--<img src="assets/img/add.png" width="12px">-->
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                            <a ng-click="removeProductByIndex($index)">
+                                                <i class="fas fa-minus"></i>
+                                                <!--<img src="assets/img/minus.png" width="12px"></a>-->
+                                        </td>
+                                        <td>
+                                            <div ng-show="!item.editStartDate">
+                                                {{ item.startDateAngular | date : "dd/MM/yyyy" }}
+                                                <a ng-click=editStartDate(item)><i class="fa fa-edit i-right" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div ng-show="item.editStartDate">
+                                                <input class="form-control" type="date" ng-model="item.startDate">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div ng-show="!item.editEndDate">
+                                                {{ item.endDateAngular | date : "dd/MM/yyyy" }}
+                                                <a ng-click=editEndDate(item)><i class="fa fa-edit i-right" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div ng-show="item.editEndDate">
+                                                <input class="form-control" type="date" ng-model="item.endDate">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="title">Commentaire</h5>
+                            <p class="title"><i>Pour que l'association comprenne tes besoins !</i></p>
+                        </div>
+                        <div class="card-body">
+                            <textarea class="form-control" rows="3" ng-model="commentaire"></textarea>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <button ng-click="save()"
+                                type="button" class="btn btn-grey col-md-2 offset-md-5">
+                            Valider
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.row -->
+</in-wrapper>

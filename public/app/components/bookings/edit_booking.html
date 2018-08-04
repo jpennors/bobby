@@ -1,0 +1,55 @@
+<in-wrapper>
+
+	<br><br>
+	<div class="container">
+	  	<h2 align="center">Résumé réservation</h2>
+	  	<hr>
+	  	<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h3>Information générale</h3>
+		                <p>Effectuée par : <i>{{booking.user.login}}</i></p>
+		                <p>Le : <i>{{ booking.created_at.toString().replace(' ', 'T') | date :  "dd/MM/yyyy" }}</i></p>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="col-md-4">
+		        <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <h3>Propriétaire</h3>
+	                    <p>{{booking.owner.name}}</p>
+	                    <p>{{booking.owner.mail}}</p>
+	                    <button class="btn">Envoyer un mail</button>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="col-md-4">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <h3>Emprunteur</h3>
+	                    <p>{{booking.booker.name}}</p>
+	                    <p>{{booking.booker.mail}}</p>
+	                    <button class="btn">Envoyer un mail</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <br>
+	    <h2 align="center">Matériel</h2>
+	  	<hr>
+	  	<div class="row">
+			<div class="col-md-4" ng-repeat="bookingline in booking.bookinglines">
+				<div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h3>{{bookingline.item.name}}</h3>
+		                <p>Quantité :<i>{{bookingline.quantity}}</i></p>
+		                <p>Du :<i>{{ bookingline.startDate.toString().replace(' ', 'T') | date :  "dd/MM/yyyy" }}</i></p>
+		                <p>Au :<i>{{ bookingline.endDate.toString().replace(' ', 'T') | date :  "dd/MM/yyyy" }}</i></p>
+		            </div>
+		        </div>
+		    </div>
+	    </div>
+    </div>
+
+</in-wrapper>

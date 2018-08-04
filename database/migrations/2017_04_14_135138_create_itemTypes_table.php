@@ -17,7 +17,6 @@ class CreateItemTypesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }

@@ -216,12 +216,12 @@ gulp.task('vendor', function() {
    */
 
   // CSS
-  /*gulp.src('resources/assets/vendor/font-awesome/css/font-awesome.min.css')
-  .pipe(gulp.dest(dist + '/assets/vendor/font-awesome/css'))*/
+  gulp.src('resources/app/vendor/fontawesome/css/fontawesome.min.css')
+  .pipe(gulp.dest(dist + '/vendor/fontawesome/css'))
 
   // Fonts
-  /*gulp.src('resources/assets/vendor/font-awesome/fonts/*')
-  .pipe(gulp.dest(dist + '/assets/vendor/font-awesome/fonts'))*/
+  gulp.src('resources/app/vendor/fontawesome/webfonts/*')
+  .pipe(gulp.dest(dist + '/vendor/fontawesome/webfonts'))
 
   /*
    *  Code Mirror

@@ -2,32 +2,40 @@
   <br><br>
   <div class = "row">
     <div class="col-md-10 offset-md-1">
-      <table class="table table-hover table-striped col-md-12">
+      <table class="table table-hover col-md-12">
         <div class="panel-heading">
           <div class="row">
             <div class="col-md-5">
                 <h3>{{asso}} | Inventaire</h3>
             </div>
-            <div class="form-group col-md-3 offset-md-1">
+            <div class="form-group col-md-3 offset-md-2">
               <input ng-model="itemSearch" type="text" class="form-control search-list" placeholder="Rechercher un item...">
             </div>
-            <div class="col-md-1 offset-md-2">
-              <a >
-                <img src="assets/img/add.png" width="30px" ng-click="add()">
-              </a>
+            <div class="col-md-1 offset-md-1">
+              <h2 class="purple-text">
+                <a ng-click="add()">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </h2>
             </div>
           </div>
         </div>
         <div class="row" ng-if="addConfirmation && !updateConfirmation && !deleteConfirmation">
-          <span class="btn spanConfirm addConfirm">La catégorie a bien été ajoutée</span>
+          <div class="col-md-6 offset-md-3 alert alert-success" role="alert">
+            L'item a bien été ajouté.
+          </div>
         </div>
         <div class="row" ng-if="updateConfirmation && !addConfirmation && !deleteConfirmation">
-          <span class="btn spanConfirm updateConfirm">La catégorie a bien été mise à jour</span>
+          <div class="col-md-6 offset-md-3 alert alert-warning" role="alert">
+            L'item a bien été mis à jour.
+          </div>
         </div>
         <div class="row" ng-if="deleteConfirmation && !addConfirmation && !updateConfirmation">
-          <span class="btn spanConfirm deleteConfirm">La catégorie a bien été supprimée</span>
+          <div class="col-md-6 offset-md-3 alert alert-danger" role="alert">
+            L'item a bien été supprimé.
+          </div>
         </div>
-        <thead class="thead-dark">
+        <thead>
           <tr>
               <th ng-click="sortBy('name')">
                 Nom  
@@ -83,9 +91,14 @@
               </select>
             </td>
             <td>
-              <img src="assets/img/validate.png" height="22px" style="margin: 6px" ng-click="save()">
-              <br>
-              <img src="assets/img/cancel.png" height="22px" style="margin: 6px" ng-click="cancel()">
+              <p class="purple-text">
+                <a ng-click="save()">
+                  <i class="fas fa-check i-right" aria-hidden="true"></i>
+                </a>
+                <a ng-click="cancel()">
+                  <i  class="fas fa-times i-left" aria-hidden="true"></i>
+                </a>
+              </p>
             </td>
           </tr>
           <tr ng-repeat="item in items | toArray:false | filter:itemSearch | orderBy:propertyName:reverse">
@@ -118,11 +131,22 @@
               </select>
             </td>
             <td>
-              <img ng-show="!item.edit" src="assets/img/edit.png" height="22px" style="margin : 6px" ng-click="edit(item)">
-              <img ng-show="!item.edit" src="assets/img/delete.png" height="22px" ng-click="delete(item)" style="margin:6px">
-              <img ng-show="item.edit" src="assets/img/validate.png" height="22px" style="margin: 6px" ng-click="update(item)">
-              <br>
-              <img ng-show="item.edit" src="assets/img/cancel.png" height="22px" style="margin: 6px" ng-click="cancel()">
+              <p ng-show="!item.edit" class="purple-text">
+                <a ng-click="edit(item)">
+                  <i class="fa fa-edit i-right" aria-hidden="true"></i>
+                </a>
+                <a ng-click="delete(item)">
+                  <i class="fas fa-trash-alt i-left" aria-hidden="true"></i>
+                </a>
+              </p>
+              <p ng-show="item.edit" class="purple-text">
+                <a ng-click="update(item)">
+                  <i class="fas fa-check i-right" aria-hidden="true"></i>
+                </a>
+                <a ng-click="cancel()">
+                  <i class="fas fa-times i-left" aria-hidden="true"></i>
+                </a>
+              </p>
             </td>
           </tr>
         </tbody>

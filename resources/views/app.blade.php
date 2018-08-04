@@ -14,9 +14,15 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <!--Fontawesome-->
+    <!--<link href="/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/v4-shims.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/v4-shims.js"></script>
 
   </head>
-  <body ng-app="bobbyApp" style="background-color:#414361;">
+  <body ng-app="bobbyApp" style="background-color:#bdbdbd">
     <div ng-view></div>
 
 
@@ -53,5 +59,6 @@
     <script src="app/factories.js"></script>
     <script src="app/directives.js"></script>
     <script src="app/components.js"></script>
+
 </body>
 </html>

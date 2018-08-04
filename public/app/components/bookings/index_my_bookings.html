@@ -2,7 +2,7 @@
 	<br><br>
 
 	<div class="container">
-	  	<h3 align="center">Réservations demandées par des associations</h3>
+	  	<h3 class="title">Réservations demandées par des associations</h3>
 
 		<table align="center" class="table">
 
@@ -30,8 +30,8 @@
 	    	<th>
 
 
-                <table class="table">
-	              	<thead class="thead-dark">
+                <table class="table table-hover">
+	              	<thead>
 	                	<tr>
 							<th scope="col">Par qui?</th>
 							<th scope="col">Caution</th>
@@ -56,7 +56,9 @@
 								<span>{{ booking.created_at.toString().replace(' ', 'T') | date :  "dd/MM/yyyy" }}</span>
 							</td>
 							<td style="text-align: center">
+								<a href="#!/booking/{{booking.id}}">
 								<button type="button" class="btn btn-outline-info">Voir</button>
+							</a>
 							</td>
 						</tr>
 	            	</tbody>
@@ -93,8 +95,8 @@
 	    	<th>
 
 
-                <table class="table">
-	              	<thead class="thead-dark">
+                <table class="table table-hover">
+	              	<thead>
 	                	<tr>
 							<th scope="col">Par qui?</th>
 							<th scope="col">Caution versée?</th>
@@ -115,7 +117,7 @@
 								<span>{{ booking.created_at.toString().replace(' ', 'T') | date :  "dd/MM/yyyy" }}</span>
 							</td>
 							<td style="text-align: center">
-								<button type="button" class="btn btn-outline-info">Voir</button>
+								<button type="button" class="btn btn-outline-info" href="!#/booking/{{booking.id}}">Voir</button>
 							</td>
 						</tr>
 	            	</tbody>
